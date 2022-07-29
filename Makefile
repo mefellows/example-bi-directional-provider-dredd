@@ -67,10 +67,7 @@ fake_ci: .env
 	GIT_COMMIT=`git rev-parse --short HEAD`-`date +%s` \
 	GIT_BRANCH=`git rev-parse --abbrev-ref HEAD` \
 	PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true \
-	make ci; 
-	GIT_COMMIT=`git rev-parse --short HEAD`-`date +%s` \
-	GIT_BRANCH=`git rev-parse --abbrev-ref HEAD` \
-	make deploy_target
+	make ci deploy_target
 
 deploy_target: can_i_deploy $(DEPLOY_TARGET)
 
