@@ -57,8 +57,11 @@ publish_provider_contract:
 # set as if it was on Github Actions.
 # Use this for quick feedback when playing around with your workflows.
 fake_ci: 
-	make ci;
-	make deploy_target
+	@CI=true \
+	VERSION=`git rev-parse --short HEAD`-`date +%s` \
+	BRANCH=`git rev-parse --abbrev-ref HEAD` \
+	PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true \
+	make ci deploy_target; 
 
 deploy_target: can_i_deploy $(DEPLOY_TARGET)
 
